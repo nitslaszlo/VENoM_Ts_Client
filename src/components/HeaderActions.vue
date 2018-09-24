@@ -68,8 +68,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { State, Action, Getter } from "vuex-class";
+import { UserState } from "../store/user/types";
+const namespace: string = "user";
+
 @Component
 export default class HeaderActions extends Vue {
+  @Action("updateUserProfile", { namespace })
+  updateUserProfile: any;
   profileDialog: boolean = false;
   user: any = {
     first: "",
@@ -86,7 +92,7 @@ export default class HeaderActions extends Vue {
 
   saveProfile(): void {
     let vm = this;
-    this.$store.dispatch("updateUserProfile", this.user).then(() => {
+    this.updateUserProfile(this.user).then(() => {
       vm.user.password = vm.user.verfiyPassword = "";
     });
     this.profileDialog = false;

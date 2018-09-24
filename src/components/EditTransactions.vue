@@ -90,7 +90,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat color="primary" @click="dialog = false">Cancel</v-btn>
-          <v-btn flat @click="saveTransaction">Save</v-btn>
+          <v-btn flat @click="saveTransactionRecord()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -99,8 +99,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { State, Action, Getter } from "vuex-class";
+import { TransactionState, Transaction } from "../store/transaction/types";
+const namespace: string = "transaction";
+
 @Component
 export default class EditTransactions extends Vue {
+  @Action("saveTransaction", { namespace })
+  saveTransaction: any;
   dialog: boolean = false;
   transaction: any = {
     id: null,
@@ -121,10 +127,9 @@ export default class EditTransactions extends Vue {
 
   transactionDatePicker: boolean = false;
 
-  saveTransaction(): void {
+  saveTransactionRecord(): void {
     console.log("Saving transaction record:");
-    this.$store.dispatch("saveTransaction", this.transaction);
-
+    this.saveTransaction(this.transaction);
     this.dialog = false;
   }
 
