@@ -14,8 +14,7 @@ export interface Months {
 }
 
 export interface TransactionState {
-  //transaction?: Transaction;
-
+  transaction?: Transaction;
   transactions?: Transaction[];
   error: boolean;
   errorMsg: string;

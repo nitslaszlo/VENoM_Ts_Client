@@ -18,7 +18,7 @@
           label="Password"
           v-model="password"
           v-bind:rules="passwordRules"
-          v-bind:type="password"
+          type="password"
           required>
         </v-text-field>
       </v-flex>
@@ -56,7 +56,7 @@ export default class Login extends Vue {
 
   showAlert: boolean = false;
   message: string = "";
-  email: string = "";
+  email: string = "nitslaszlo@gmail.com";
   emailRules: any[] = [
     (v: any) => !!v || "E-mail is required",
     (v: any) =>
@@ -64,7 +64,7 @@ export default class Login extends Vue {
       "E-mail must be valid"
   ];
 
-  password: string = "";
+  password: string = "Abc123456";
   passwordRules: any[] = [(v: any) => !!v || "Password is required"];
 
   // get isLoggedIn(): boolean {
@@ -82,6 +82,7 @@ export default class Login extends Vue {
       password: this.password
     };
     this.logInUser(payload).then(() => {
+      console.log(this.isLoggedIn);
       if (this.isLoggedIn) {
         this.$router.push({ path: "/" });
       } else {

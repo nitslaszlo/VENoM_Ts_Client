@@ -89,7 +89,7 @@
         </v-layout>
       </v-container>
     </v-content>
-    <edit-transaction></edit-transaction>
+    <edit-transactions></edit-transactions>
   </div>
 </template>
 
@@ -131,10 +131,10 @@ export default class Home extends Vue {
   }
 
   mounted() {
-    console.log("Is user logged in? ", this.isLoggedIn);
-    if (!this.isLoggedIn) {
-      this.$router.push({ path: "/login" });
-    }
+    // console.log("Is user logged in? ", this.isLoggedIn);
+    // if (!this.isLoggedIn) {
+    //   this.$router.push({ path: "/login" });
+    // }
   }
 }
 </script>

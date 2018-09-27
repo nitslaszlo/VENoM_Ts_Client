@@ -2,7 +2,7 @@
   <v-card style="width: 100%;">
     <v-card-title>
       <span class="pr-3">
-        Transactions for {{ state.months[state.currentMonth].name }} - {{ state.currentYear }}
+        Transactions for {{ months[currentMonth].name }} - {{ currentYear }}
       </span>
       <v-btn flat icon class="pr-2" v-on:click="gotoMonthCall(-1)">
         <v-icon>keyboard_arrow_left</v-icon>
@@ -92,6 +92,12 @@ export default class Transactions extends Vue {
   balanceCharges: number;
   @Getter("balanceDeposits", { namespace })
   balanceDeposits: number;
+  @Getter("months", { namespace })
+  months: any;
+  @Getter("currentYear", { namespace })
+  currentYear: number;
+  @Getter("currentMonth", { namespace })
+  currentMonth: any;
   search: string = "";
   pagination: any = {};
   headers: any[] = [

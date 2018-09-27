@@ -10,7 +10,7 @@ export const actions: ActionTree<TransactionState, RootState> = {
 
     axios
       .get(
-        "https://localhost:3000/transaction/" +
+        "http://localhost:3000/transaction/" +
           state.currentYear +
           "/" +
           state.currentMonth,
@@ -35,7 +35,7 @@ export const actions: ActionTree<TransactionState, RootState> = {
     // Make API call... Pass in selected Month and Year + UserId in hearder...
     axios
       .get(
-        "https://localhost:3000/transaction/balance/" +
+        "http://localhost:3000/transaction/balance/" +
           state.currentYear +
           "/" +
           state.currentMonth,
@@ -67,7 +67,7 @@ export const actions: ActionTree<TransactionState, RootState> = {
     transaction.userId = rootState.userId;
 
     axios
-      .post("https://localhost:3000/transaction", transaction)
+      .post("http://localhost:3000/transaction", transaction)
       .then(resp => {
         dispatch("getTransactionsByMonth").then(() => {
           dispatch("getPreviousMonthsBalances");
