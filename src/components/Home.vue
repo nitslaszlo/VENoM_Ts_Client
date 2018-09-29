@@ -84,12 +84,12 @@
     </v-toolbar>
     <v-content>
       <v-container fluid>
-        <v-layout>
+        <v-layout v-if="isLoggedIn">
             <transactions></transactions>
         </v-layout>
       </v-container>
     </v-content>
-    <edit-transactions></edit-transactions>
+    <edit-transactions v-if="isLoggedIn"></edit-transactions>
   </div>
 </template>
 
@@ -98,6 +98,8 @@ import { Component, Vue } from "vue-property-decorator";
 import Transactions from "./Transactions.vue";
 import EditTransactions from "./EditTransactions.vue";
 import HeaderActions from "./HeaderActions.vue";
+import { Getter } from "vuex-class";
+const namespace: string = "user";
 
 @Component({
   components: {
@@ -107,9 +109,8 @@ import HeaderActions from "./HeaderActions.vue";
   }
 })
 export default class Home extends Vue {
-  get isLoggedIn(): boolean {
-    return this.$store.getters.isLoggedIn;
-  }
+  @Getter("isLoggedIn", { namespace })
+  isLoggedIn: boolean;
 
   dialog: boolean = false;
   drawer: any = null;
@@ -131,10 +132,9 @@ export default class Home extends Vue {
   }
 
   mounted() {
-    // console.log("Is user logged in? ", this.isLoggedIn);
-    // if (!this.isLoggedIn) {
-    //   this.$router.push({ path: "/login" });
-    // }
+    if (!this.isLoggedIn) {
+      this.$router.push({ path: "/login" });
+    }
   }
 }
 </script>

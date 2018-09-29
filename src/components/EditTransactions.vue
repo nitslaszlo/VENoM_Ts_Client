@@ -53,8 +53,7 @@
                 v-bind:items="transactionTypes"
                 v-model="transaction.transactionType"
                 label="Transaction Type"
-                single-line
-                bottom
+                single-line   
               ></v-select>
             </v-flex>
             <v-flex xs12>
@@ -108,12 +107,13 @@ export default class EditTransactions extends Vue {
   @Action("saveTransaction", { namespace })
   saveTransaction: any;
   dialog: boolean = false;
-  transaction: any = {
-    id: null,
+  transaction: Transaction = {
+    userId: null,
     transactionDate: null,
-    transactionType: null,
+    transactionType: "",
     description: "",
     notes: "",
+    balance: 0.0,
     charge: 0.0,
     deposit: 0.0
   };

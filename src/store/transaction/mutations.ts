@@ -25,6 +25,8 @@ function calcRunningBalance(tx: Transaction, state: TransactionState): number {
 function mapTransaction(tx: Transaction, state: TransactionState): Transaction {
   const transDate = new Date(tx.transactionDate);
   let transaction: Transaction = {
+    userId: tx.userId,
+    notes: tx.notes,
     transactionDate:
       state.months[transDate.getUTCMonth() + 1].abrev +
       "-" +
@@ -42,24 +44,24 @@ function mapTransaction(tx: Transaction, state: TransactionState): Transaction {
 }
 
 export const mutations: MutationTree<TransactionState> = {
-  mapTransaction(state, tx) {
-    const transDate = new Date(tx.transactionDate);
-    let transaction = {
-      transactionDate:
-        state.months[transDate.getUTCMonth() + 1].abrev +
-        "-" +
-        transDate.getUTCDate(),
-      transactionType: tx.transactionType,
-      description: tx.description,
-      // charge: moneyFormatter(tx.charge),
-      // deposit: moneyFormatter(tx.deposit),
-      // balance: moneyFormatter(calcRunningBalance(tx, state))
-      charge: tx.charge,
-      deposit: tx.deposit,
-      balance: calcRunningBalance(tx, state)
-    };
-    return transaction;
-  },
+  // mapTransaction(state, tx) {
+  //   const transDate = new Date(tx.transactionDate);
+  //   let transaction = {
+  //     transactionDate:
+  //       state.months[transDate.getUTCMonth() + 1].abrev +
+  //       "-" +
+  //       transDate.getUTCDate(),
+  //     transactionType: tx.transactionType,
+  //     description: tx.description,
+  //     // charge: moneyFormatter(tx.charge),
+  //     // deposit: moneyFormatter(tx.deposit),
+  //     // balance: moneyFormatter(calcRunningBalance(tx, state))
+  //     charge: tx.charge,
+  //     deposit: tx.deposit,
+  //     balance: calcRunningBalance(tx, state)
+  //   };
+  //   return transaction;
+  // },
   transactionsByMonth(state, data) {
     // Start by clearing the array...
     state.transactions = [];

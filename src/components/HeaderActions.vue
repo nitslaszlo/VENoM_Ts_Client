@@ -76,6 +76,8 @@ const namespace: string = "user";
 export default class HeaderActions extends Vue {
   @Action("updateUserProfile", { namespace })
   updateUserProfile: any;
+  @Getter("userObj", { namespace })
+  userObj: any;
   profileDialog: boolean = false;
   user: any = {
     first: "",
@@ -93,7 +95,8 @@ export default class HeaderActions extends Vue {
   saveProfile(): void {
     let vm = this;
     this.updateUserProfile(this.user).then(() => {
-      vm.user.password = vm.user.verfiyPassword = "";
+      vm.user.password = "";
+      vm.user.verfiyPassword = "";
     });
     this.profileDialog = false;
   }
@@ -104,8 +107,8 @@ export default class HeaderActions extends Vue {
   }
 
   mounted() {
-    const loggedInUser = this.$store.state.user;
-
+    // const loggedInUser = this.$store.state.user;
+    const loggedInUser = this.userObj;
     this.user.first = loggedInUser.first;
     this.user.last = loggedInUser.last;
     this.user.email = loggedInUser.email;

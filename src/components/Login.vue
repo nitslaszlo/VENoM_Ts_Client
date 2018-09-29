@@ -56,7 +56,7 @@ export default class Login extends Vue {
 
   showAlert: boolean = false;
   message: string = "";
-  email: string = "nitslaszlo@gmail.com";
+  email: string = "user1@test.com";
   emailRules: any[] = [
     (v: any) => !!v || "E-mail is required",
     (v: any) =>
@@ -64,19 +64,10 @@ export default class Login extends Vue {
       "E-mail must be valid"
   ];
 
-  password: string = "Abc123456";
+  password: string = "user111";
   passwordRules: any[] = [(v: any) => !!v || "Password is required"];
 
-  // get isLoggedIn(): boolean {
-  //   return this.$store.getters.isLoggedIn;
-  // }
-
-  // get loginError(): string {
-  //   return this.$store.getters.loginError;
-  // }
-
   login(): void {
-    console.log("Login called!");
     const payload = {
       email: this.email,
       password: this.password

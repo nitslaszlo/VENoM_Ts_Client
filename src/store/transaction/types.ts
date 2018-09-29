@@ -1,10 +1,12 @@
 export interface Transaction {
+  userId: any;
   transactionDate: any;
   transactionType: string;
   description: string;
   charge: number;
   deposit: number;
   balance: number;
+  notes: string;
 }
 
 export interface Months {

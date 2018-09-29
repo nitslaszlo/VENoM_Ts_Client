@@ -26,7 +26,7 @@
         v-bind:headers="headers"
         v-bind:items="items"
         v-bind:search="search"
-        item-key="_id"
+        item-key="userId"
       >
       <template slot="items" slot-scope="props">
         <tr>
@@ -106,7 +106,7 @@ export default class Transactions extends Vue {
     {
       text: "Description",
       align: "center",
-      sortable: false,
+      sortable: true,
       value: "description"
     },
     {
@@ -124,39 +124,7 @@ export default class Transactions extends Vue {
     { text: "Balance", align: "center", sortable: false, value: "balance" }
   ];
 
-  // get currentMonth(): number {
-  //   return this.$store.state.transactions.currentMonth;
-  // }
-
-  // get currentYear(): number {
-  //   return this.$store.state.transactions.currentYear;
-  // }
-
-  // get months(): any {
-  //   return this.$store.state.transactions.months;
-  // }
-
-  // get items(): any {
-  //   return this.$store.getters.transactionsByMonth;
-  // }
-
-  // get balanceCharges(): number {
-  //   return this.$store.getters.balanceCharges;
-  // }
-
-  // get balanceDeposits(): number {
-  //   return this.$store.getters.balanceDeposits;
-  // }
-
-  max25chars: any = (v: any) => v.length <= 25 || "Input too long!";
-
-  // getTransactionsByMonth(): void {
-  //   this.$store.dispatch("getTransactionsByMonth");
-  // }
-
-  // getPreviousMonthsBalances(): void {
-  //   this.$store.dispatch("getPreviousMonthsBalances");
-  // }
+  // max25chars: any = (v: any) => v.length <= 25 || "Input too long!";
 
   gotoMonthCall(increment: any): void {
     this.gotoMonth(increment).then(() => {
